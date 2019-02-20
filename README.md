@@ -1,2 +1,2 @@
-# Go-WebServer
-A simple web-server with go net/http library
+# GoLang
+there is some simple codes to make us getting closer to iur new friend Go!
