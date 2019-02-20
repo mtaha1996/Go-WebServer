@@ -5,7 +5,6 @@ import "fmt"
 const usixteenbitmax float64 = 65535
 const kmh_multiple float64 = 1.60934
 
-
 type car struct {
 	gasPedal      uint16
 	brakePedal    uint16
@@ -13,12 +12,19 @@ type car struct {
 	topSpeedKmh   float64
 }
 
-func (c car) kmh() float64{
-	return float64(c.gasPedal) * (c.topSpeedKmh/usixteenbitmax)
+// Value receiver method
+func (c car) kmh() float64 {
+	return float64(c.gasPedal) * (c.topSpeedKmh / usixteenbitmax)
 }
 
-func (c car) mph() float64{
-	return float64(c.gasPedal) * (c.topSpeedKmh/usixteenbitmax/kmh_multiple)
+// Value receiver method
+func (c car) mph() float64 {
+	return float64(c.gasPedal) * (c.topSpeedKmh / usixteenbitmax / kmh_multiple)
+}
+
+// Pointer receiver method
+func (c *car) newTopSpeed(newSpeed float64) {
+	c.topSpeedKmh = newSpeed
 }
 
 func main() {
@@ -31,5 +37,11 @@ func main() {
 	fmt.Println(a_car)
 	fmt.Println(a_car.kmh())
 	fmt.Println(a_car.mph())
+	fmt.Println(a_car.topSpeedKmh)
+
+	a_car.newTopSpeed(500)
+	fmt.Println(a_car.kmh())
+	fmt.Println(a_car.mph())
+	fmt.Println(a_car.topSpeedKmh)
 
 }
